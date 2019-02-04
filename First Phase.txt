@@ -1,0 +1,211 @@
+
+-- Insert Statements for Phase 1
+
+
+CREATE TABLE branch
+(branchno VARCHAR(5)
+ ,street VARCHAR(100)
+ ,city  VARCHAR(20)
+ ,postcode varchar(10)
+ ,PRIMARY KEY (branchno)
+)
+
+
+CREATE TABLE Property_Status
+(status_id VARCHAR(10)
+ ,status_type VARCHAR(15)
+ ,PRIMARY KEY (status_id)
+ )
+
+CREATE TABLE PropertyType
+(p_type_ID VARCHAR(10)
+ ,typename VARCHAR(15)
+ ,status_id varchar(10)
+ ,PRIMARY KEY (p_type_ID)
+ ,FOREIGN KEY(status_id) REFERENCES Property_Status(status_id)
+ )
+
+CREATE TABLE Client_Type
+(client_type_ID VARCHAR(10)
+ ,client_type VARCHAR(15)
+ ,PRIMARY KEY (client_type_ID)
+ )
+
+CREATE TABLE client
+(clientno VARCHAR(5)
+ ,fname VARCHAR(8)
+ ,lname  VARCHAR(8)
+ ,prefType VARCHAR(8)
+ ,street VARCHAR(100)
+ ,city  VARCHAR(20)
+ ,country VARCHAR(10)
+ ,postcode varchar(10)
+ ,tel_no varchar(14)
+ ,pref_type char(6)
+ ,max_rent numeric(4)
+ ,client_type_id VARCHAR(10)
+ ,PRIMARY KEY (clientno)
+ ,FOREIGN KEY (client_type_id) REFERENCES client_type(client_type_id)
+)
+
+create table viewing
+( clientno VARCHAR(5)
+ ,propertyno varchar(5)
+ ,viewdate date
+ ,comments varchar(200)
+ ,PRIMARY KEY (clientno, propertyno)
+)
+
+CREATE TABLE private_owner
+(ownerno VARCHAR(4)
+ ,fname VARCHAR(20)
+ ,lname  VARCHAR(20)
+ ,street VARCHAR(15)
+ ,city  VARCHAR(10)
+ ,postcode varchar(6)
+ ,tel_no varchar(14)
+ ,PRIMARY KEY (ownerno)
+)
+
+create table registration
+( clientno VARCHAR(5)
+ ,branchno varchar(5)
+ ,fname VARCHAR(12)
+ ,lname VARCHAR(12)
+ ,telno varchar(10)
+ ,prefType varchar(10)
+ ,maxRent varchar(10)
+ ,PRIMARY KEY (clientno, branchno)
+ ,FOREIGN KEY(clientno) REFERENCES client(clientno)
+ ,FOREIGN KEY(branchno) REFERENCES branch(branchno)
+)
+
+CREATE TABLE Staff_Type
+(staff_type_ID VARCHAR(10)
+ ,type_names VARCHAR(15)
+ ,PRIMARY KEY (staff_type_ID)
+ )
+
+CREATE TABLE staff
+(staffno VARCHAR(5)
+ ,fname VARCHAR(15)
+ ,lname VARCHAR(15)
+ ,position varchar(15)
+ ,sex char(1)
+ ,dob date
+ ,salary numeric(7,2)
+ ,branchno varchar(5)
+ ,staff_type_id varchar(10)
+ ,FOREIGN KEY(branchno) REFERENCES branch(branchno)
+ ,FOREIGN KEY(staff_type_id) REFERENCES staff_type(staff_type_id)
+ ,PRIMARY KEY (staffno)
+)
+
+
+CREATE TABLE property
+(propertyno VARCHAR(5)
+ ,street VARCHAR(15)
+ ,city  VARCHAR(10)
+ ,postcode varchar(6)
+ ,rooms numeric(2)
+ ,ownerno varchar(4)
+ ,branchno varchar(5)
+ ,staffno varchar(5)
+ ,p_type_id varchar(10)
+ ,FOREIGN KEY (ownerno) REFERENCES private_owner(ownerno)
+ ,FOREIGN KEY(branchno) REFERENCES branch(branchno)
+ ,FOREIGN KEY (staffno) REFERENCES staff(staffno)
+ ,FOREIGN KEY (p_type_id) REFERENCES propertytype(p_type_id)
+ ,PRIMARY KEY (propertyno)
+)
+
+CREATE TABLE Property_Inquiry
+(inq_ID VARCHAR(6)
+ ,propertyno VARCHAR(5)
+ ,inquiry_details VARCHAR(100)
+ ,dates date
+ ,clientno varchar(5)
+ ,FOREIGN KEY(propertyNo) REFERENCES property(propertyNo)
+ ,FOREIGN KEY(clientno) REFERENCES Client(clientno)
+ ,PRIMARY KEY (inq_ID)
+ )
+
+CREATE TABLE Inquiry_Followup
+(inq_f_id varchar(10)
+ ,inq_ID VARCHAR(6)
+ ,staffno VARCHAR(5)
+ ,inquiry_details VARCHAR(100)
+ ,dates date
+ ,inquiry_status varchar(15)
+ ,FOREIGN KEY(inq_ID) REFERENCES Property_Inquiry(inq_ID)
+ ,FOREIGN KEY(staffno) REFERENCES Staff(staffno)
+ ,PRIMARY KEY (inq_f_id, staffno)
+ )
+
+CREATE TABLE Maintenance_Company
+(comp_ID VARCHAR(10)
+ ,comp_type VARCHAR(10)
+ ,comp_name VARCHAR(18)
+ ,PRIMARY KEY (comp_id)
+ )
+
+CREATE TABLE Maintenance_Worker
+(comp_id VARCHAR(10)
+ ,cont_id VARCHAR(10)
+ ,cont_fname VARCHAR(20)
+ ,cont_lname VARCHAR(20)
+ ,job_title VARCHAR(10)
+ ,street VARCHAR(100)
+ ,city  VARCHAR(20)
+ ,postcode varchar(10)
+ ,phone_no varchar(10)
+ ,PRIMARY KEY (cont_id)
+ ,FOREIGN KEY (comp_id) REFERENCES Maintenance_Company(comp_id)
+ )
+
+
+CREATE TABLE Contacts
+(cont_id VARCHAR(10)
+ ,cont_date date
+ ,staffno  VARCHAR(5)
+ ,clientno VARCHAR(5)
+ ,propertyno VARCHAR(5)
+ ,cont_details varchar(60)
+ ,finance_type varchar(14)
+ ,PRIMARY KEY (cont_id)
+ ,FOREIGN KEY (staffno) REFERENCES staff(staffno)
+ ,FOREIGN KEY(clientno) REFERENCES Client(clientno)
+ ,FOREIGN KEY(propertyNo) REFERENCES property(propertyNo)
+)
+
+CREATE TABLE Maintenance
+(maintenance_ID VARCHAR(7)
+ ,main_date date
+ ,main_details VARCHAR(100)
+ ,inq_id VARCHAR(6)
+ ,cont_id varchar(10)
+ ,FOREIGN KEY(inq_id) REFERENCES Property_Inquiry(inq_id)
+ ,FOREIGN KEY(cont_id) REFERENCES Contacts(cont_id)
+ ,PRIMARY KEY (maintenance_ID)
+ )
+
+CREATE TABLE Transaction_ID
+(trans_id VARCHAR(10)
+ ,cont_id VARCHAR(10)
+ ,amount_paid VARCHAR(10)
+ ,PRIMARY KEY (trans_ID)
+ ,FOREIGN KEY (cont_id) REFERENCES Contacts(cont_id)
+ )
+
+CREATE TABLE Leasing
+(propertyno VARCHAR(5)
+ ,property_name VARCHAR(15)
+ ,PRIMARY KEY (propertyno)
+ )
+
+CREATE TABLE Purchase_Property
+(propertyno VARCHAR(5)
+ ,market_value VARCHAR(15)
+ ,property_name varchar(15)
+ ,PRIMARY KEY (propertyno)
+ )
