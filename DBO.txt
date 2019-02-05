@@ -48,14 +48,6 @@ CREATE TABLE client
  ,FOREIGN KEY (client_type_id) REFERENCES client_type(client_type_id)
 )
 
-create table viewing
-( clientno VARCHAR(5)
- ,propertyno varchar(5)
- ,viewdate date
- ,comments varchar(200)
- ,PRIMARY KEY (clientno, propertyno)
-)
-
 CREATE TABLE private_owner
 (ownerno VARCHAR(4)
  ,fname VARCHAR(20)
@@ -70,9 +62,6 @@ CREATE TABLE private_owner
 create table registration
 ( clientno VARCHAR(5)
  ,branchno varchar(5)
- ,fname VARCHAR(12)
- ,lname VARCHAR(12)
- ,telno varchar(10)
  ,prefType varchar(10)
  ,maxRent varchar(10)
  ,PRIMARY KEY (clientno, branchno)
@@ -119,6 +108,16 @@ CREATE TABLE property
  ,PRIMARY KEY (propertyno)
 )
 
+create table viewing
+( clientno VARCHAR(5)
+ ,propertyno varchar(5)
+ ,viewdate date
+ ,comments varchar(200)
+ ,PRIMARY KEY (clientno, propertyno)
+ ,FOREIGN KEY (clientno) REFERENCES Client(clientno)
+ ,FOREIGN KEY (propertyno) REFERENCES Property(propertyno)
+)
+
 CREATE TABLE Property_Inquiry
 (inq_ID VARCHAR(6)
  ,propertyno VARCHAR(5)
@@ -130,16 +129,16 @@ CREATE TABLE Property_Inquiry
  ,PRIMARY KEY (inq_ID)
  )
 
+
 CREATE TABLE Inquiry_Followup
 (inq_f_id varchar(10)
  ,inq_ID VARCHAR(6)
  ,staffno VARCHAR(5)
- ,inquiry_details VARCHAR(100)
  ,dates date
  ,inquiry_status varchar(15)
  ,FOREIGN KEY(inq_ID) REFERENCES Property_Inquiry(inq_ID)
  ,FOREIGN KEY(staffno) REFERENCES Staff(staffno)
- ,PRIMARY KEY (inq_f_id, staffno)
+ ,PRIMARY KEY (inq_f_id)
  )
 
 CREATE TABLE Maintenance_Company
@@ -165,14 +164,14 @@ CREATE TABLE Maintenance_Worker
 
 
 CREATE TABLE Contacts
-(cont_id VARCHAR(10)
+(contact_id VARCHAR(10)
  ,cont_date date
  ,staffno  VARCHAR(5)
  ,clientno VARCHAR(5)
  ,propertyno VARCHAR(5)
  ,cont_details varchar(60)
  ,finance_type varchar(14)
- ,PRIMARY KEY (cont_id)
+ ,PRIMARY KEY (contact_id)
  ,FOREIGN KEY (staffno) REFERENCES staff(staffno)
  ,FOREIGN KEY(clientno) REFERENCES Client(clientno)
  ,FOREIGN KEY(propertyNo) REFERENCES property(propertyNo)
@@ -182,30 +181,34 @@ CREATE TABLE Maintenance
 (maintenance_ID VARCHAR(7)
  ,main_date date
  ,main_details VARCHAR(100)
- ,inq_id VARCHAR(6)
+ ,inq_f_id VARCHAR(10)
  ,cont_id varchar(10)
- ,FOREIGN KEY(inq_id) REFERENCES Property_Inquiry(inq_id)
- ,FOREIGN KEY(cont_id) REFERENCES Contacts(cont_id)
+ ,FOREIGN KEY(inq_f_id) REFERENCES Inquiry_Followup(inq_f_id)
+ ,FOREIGN KEY(cont_id) REFERENCES Maintenance_Worker(cont_id)
  ,PRIMARY KEY (maintenance_ID)
  )
 
 CREATE TABLE Transaction_ID
 (trans_id VARCHAR(10)
- ,cont_id VARCHAR(10)
+ ,contact_id VARCHAR(10)
  ,amount_paid VARCHAR(10)
  ,PRIMARY KEY (trans_ID)
- ,FOREIGN KEY (cont_id) REFERENCES Contacts(cont_id)
+ ,FOREIGN KEY (contact_id) REFERENCES Contacts(contact_id)
  )
 
 CREATE TABLE Leasing
 (propertyno VARCHAR(5)
+ ,leasing_no varchar(5)
  ,property_name VARCHAR(15)
  ,PRIMARY KEY (propertyno)
+ ,FOREIGN KEY (propertyno) REFERENCES Property(propertyno)
  )
 
 CREATE TABLE Purchase_Property
 (propertyno VARCHAR(5)
+ ,pur_no varchar(5)
  ,market_value VARCHAR(15)
  ,property_name varchar(15)
  ,PRIMARY KEY (propertyno)
+ ,FOREIGN KEY (propertyno) REFERENCES Property(propertyno)
  )

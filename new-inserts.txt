@@ -1,0 +1,202 @@
+/* Branch */
+
+insert into branch (branchno, street, city, postcode)
+values (1,'420 Madhan chopra rd','Bangladesh',09001)
+insert into branch
+values(2,'220 Brothers rd','Mankato',56001)
+insert into branch
+values(3,'69 Chudwai street','New York',96789)
+
+
+/*Client Type*/
+
+insert into Client_Type (client_type_ID, client_type)
+values(1, 'Senior Citizen')
+insert into Client_Type
+values (2, 'Single')
+insert into Client_Type
+values (3, 'Married')
+
+/*Client*/
+
+insert into client (clientno, fname, lname, prefType, street, city, country, postcode, tel_no, max_rent, client_type_ID)
+values(1,'Madhan','Chopra','Large','169 Jhonny sins street','Mankato','USA',78976,9295548789,1000, 1)
+insert into client (clientno, fname, lname, prefType, street, city, country, postcode, tel_no, max_rent, client_type_ID)
+values(2,'Tikka','Khan','Small','550 Johnny sins street','Mankato','USA', 76565,9293326587,800,1)
+insert into client (clientno, fname, lname, prefType, street, city, country, postcode, tel_no, max_rent, client_type_ID)
+values(3,'Hamza','Siddiqui','Medium','654 Megan Fox','Karachi','Pakistan',84578,5487458798,500, 2)
+insert into client (clientno, fname, lname, prefType, street, city, country, postcode, tel_no, max_rent, client_type_ID)
+values(4,'Khan','Khan','Large','321 Jahan tum wahan mein','Jedda', 'Saudi Arab',54879,54785474587,600, 3)
+insert into client (clientno, fname, lname, prefType, street, city, country, postcode, tel_no, max_rent, client_type_ID)
+values(5,'Janeman','Randwa','Medium','213 Gand ka surakh','Good Thunder', 'USA',8789,5487487484,700, 2)
+insert into client (clientno, fname, lname, prefType, street, city, country, postcode, tel_no, max_rent, client_type_ID)
+values(6,'Umar','Peerzada','Large','545 Malena Morgan rd','Lahore','Pakistan',87458,0900778601,2000, 2)
+
+
+/* Staff_Type */
+insert into Staff_Type (staff_type_ID, type_names)
+values(1, 'Accountant')
+insert into Staff_Type (staff_type_ID, type_names)
+values(2, 'Seller')
+insert into Staff_Type (staff_type_ID, type_names)
+values(3, 'Janitor')
+insert into Staff_Type (staff_type_ID, type_names)
+values(4, 'Security')
+insert into Staff_Type (staff_type_ID, type_names)
+values(5, 'Care Taker')
+
+/* staff */
+
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(1, 'Nabeel','Aslam','Care Taker','M','1990-02-18',50000, 1, 5)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(2, 'Syed','Peerzada','Accountant','M','1995-10-19',75000, 2, 1)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(3, 'Muhammad', 'Khalid', 'Accountant','M','1996-02-21',75000, 1, 1)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(4, 'Denzhin','Lajia', 'Accountant','M','1994-11-22',50000, 3, 1)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(5, 'Malena', 'Morgan', 'Seller', 'F','1992-03-28',95000,3,2)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(6, 'Dani','Daniels','Seller','F','1989-04-12',95000,2,2)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(7, 'Ammar', 'Nadeem', 'Care Taker','M','1997-09-01',98000,3,5)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values(8, 'Johnny','Sins', 'Care taker','M','1978-02-12',98000,2, 5)
+insert into staff (staffno, fname, lname, position, sex, dob, salary, branchno, staff_type_id)
+values (9, 'Monjour', 'Nahid', 'Seller','M','1985-05-25',25000, 1,2)
+
+/* Private Owner */
+
+insert into private_owner (ownerno, fname, lname, street, city, postcode, tel_no)
+values(1, 'Yasir', 'Perwaiz', '151 Highland','Minneapo',56478, 5847895214)
+insert into private_owner
+values(2, 'Billu', 'Barber','93 Indonesia','Tokyo',58745, 5478457845)
+insert into private_owner
+values(3, 'Supreme','Yeezy','121 California','Los Angles',48748, 3215456547)
+insert into private_owner
+values(4, 'Adidas','Bape','Data corrupted','Mankato',74874, 5214568745)
+
+
+/* Property Status */
+insert into Property_Status (status_id, status_type)
+values(1, 'Business')
+insert into Property_Status 
+values(2, 'Commercial')
+
+/* Property Type */
+
+insert into PropertyType(p_type_ID, typename, status_id)
+values(1, 'Apartment', 2)
+insert into PropertyType
+values(2, 'House', 2)
+insert into PropertyType
+values(3, 'Villa',2)
+insert into PropertyType
+values(4,'Mall', 1)
+insert into PropertyType
+values(5,'Restraunt', 1)
+
+/*Property*/
+
+insert into property (propertyno, street, city, postcode, rooms, ownerno, branchno, staffno, p_type_ID)
+values(1,'Jahan chaho','Randwa', 56001,2,2,1,3,1)
+insert into property
+values(2,'121 Balcerzak' ,'Mankato', 25410,4,1,3,4,2)
+insert into property
+values(3, '221 Gandu', 'New York', 45457, 2,2,1,3,1)
+insert into property
+values(4, '52 Uzu Tnasil', 'Detroit', 41474, 4,1,3,4,2)
+
+/* viewing */
+insert into viewing (clientno, propertyno, viewdate, comments) 
+values(1,1, '2018-09-21', 'Looks good but needs a bigger one')
+insert into viewing
+values(1,2, '2018-09-22', 'Perfect!')
+insert into viewing 
+values(2,1 , '2017-10-23', 'Rent is too high!')
+
+
+/* Property inquiry */
+insert into Property_Inquiry(inq_ID, propertyno, inquiry_details, dates, clientno)
+values (1, 1, 'Needs to look at the property', '2018-09-15',1)
+insert into Property_Inquiry
+values(2, 2, 'Needs to look for a bigger apt', '2018-09-22',1)
+insert into Property_Inquiry
+values (3,1, 'Information about rent for a house', '2017-10-23', 2)
+insert into Property_Inquiry
+values(4,2, 'Needs to fix air conditionar','2018-11-28', 2)
+
+/* Leasing */
+insert into Leasing (propertyno, leasing_no, property_name)
+values(3, 10, 'Gandu House')
+insert into Leasing
+values(4, 11, 'Corrupted Data')
+
+/* Purchase Property */
+insert into Purchase_Property(propertyno,pur_no, market_value,property_name)
+values(1,11,150000,'Still corrupted')
+insert into Purchase_Property
+values(2,12, 254000,'Pls Fix It')
+
+
+/* registration */
+
+insert into registration(clientno, branchno, prefType, maxRent)
+values(1, 1, 'Apt',500) 
+insert into registration
+values(2, 2, 'House', 100000)
+insert into registration 
+values(3, 3, 'Mall', 150000)
+
+
+/* Inquiry Followup */
+insert into Inquiry_Followup(inq_f_id, inq_ID, staffno, dates, inquiry_status)
+values(1,1,1, '2018-09-17', 'Completed')
+insert into Inquiry_Followup
+values(2,2,7, '2018-09-23', 'Completed')
+insert into Inquiry_Followup
+values(3,3,7, '2017-10-24', 'Completed')
+insert into Inquiry_Followup
+values(4,4,8, '2018-11-30', 'Completed')
+
+/* Contacts */
+
+insert into contacts(contact_id, cont_date, staffno, clientno, propertyno, cont_details, finance_type)
+values(1, '2018-09-22', 4, 1, 2, 'Bought the property','Check')
+insert into contacts
+values(2, '2019-01-01', 3, 4,4, 'Rented the property', 'Cash')
+
+/* Maintenance company */
+insert into Maintenance_Company(comp_ID, comp_type, comp_name)
+values(1, 'Plumbing','Plumb and Go')
+insert into Maintenance_Company(comp_ID, comp_type, comp_name)
+values(2, 'Air flow','A graders')
+insert into Maintenance_Company(comp_ID, comp_type, comp_name)
+values(3, 'Wiring','Electric Brothers')
+insert into Maintenance_Company(comp_ID, comp_type, comp_name)
+values(4, 'Flooring','Floor and Glore')
+
+
+
+/* Maintenance Worker */
+insert into Maintenance_Worker(comp_id, cont_id, cont_fname, cont_lname, job_title, street, city, postcode, phone_no)
+values(1, 1, 'Yajuj','Majuj', 'Plumber', '125 Peerghazi road', 'Randwa',47547,5487458897)
+insert into Maintenance_Worker
+values(1,2, 'Big','Boss','Plumber','126 Oh yeah road', 'Dozakh', 45748,548745874)
+insert into Maintenance_Worker
+values(2,3, 'Salu','Jalu','Repairer', 'Bashir Darul Mahi', 'Uzu Tnasil', 58585,5858547478)
+insert into Maintenance_Worker
+values(3,4, 'Chota','Don','Electrical', '1 Mohenjo Daro','Mankato',45454,4546569878)
+ 
+
+ /* Transaction */
+insert into Transaction_ID(trans_id, contact_id, amount_paid)
+values( 1,1,65000)
+insert into Transaction_ID
+values(2,2,150000)
+
+
+/* Maintenance */
+insert into Maintenance( maintenance_ID, main_date, main_details, inq_f_id, cont_id)
+values(1,'2018-12-01','Fixed the airconditionar',4,3)
